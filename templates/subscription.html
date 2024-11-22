@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Music Streaming Service</title>
+        {% load static %}
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.4/dist/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    </head>
+    <body style="margin:0; padding:0; background:#121212; font-family:Arial, sans-serif; color:#fff;">
+        <div class="sidebar">
+            <!-- Spotify Logo -->
+            <div class="logo-container">
+                <img src="{% static '/images/logo.png' %}" alt="Spotify Logo" style="width: 100%; height: auto; padding: 20px; box-sizing: border-box;">
+            </div>
+    
+            <!-- Welcome User -->
+            <div class="sidebar-section">
+                <span style="margin-left: 14px;" class="sidebar-link-icon">👤</span>
+                <b>Welcome, {{user.username}}</b>
+                <br>
+                <br>
+    
+                <a href="/logout">
+                    <span class="sidebar-link-icon">↪️</span>
+                    <b>Logout</b>
+                </a>
+            </div>
+    
+            <!-- Top section of the sidebar -->
+            <div class="sidebar-section">
+                <a href="/" class="sidebar-link active">
+                    <span class="sidebar-link-icon">🏠</span>
+                    Home
+                </a>
+            </div>
+           
+        </div>
+    
+        <div style="margin-left:240px; padding:20px;">
+            <header class="header-container">
+                <div class="search-title"><h3>Subscription Page<h3></div>
+            </header>
+            <form method="POST" action="{% url 'process_subscription' %}">
+                {% csrf_token %}
+                <input class="bg-gray-800 text-white border border-gray-600 rounded py-2 px-4 block w-full appearance-none leading-normal" type="text" name="Card Number" placeholder="Card Number" size="80" inputmode="numeric" maxlength="19" required><br>
+                <label for="Expiry Date">Expiry Date:</label>
+                <input class="bg-gray-800 text-white border border-gray-600 rounded py-2 px-4 block w-full appearance-none leading-normal" type="date" min="2024-01-01" name="Expiry Date" placeholder="Expiry Date"  required><br>
+                <input  class="bg-gray-800 text-white border border-gray-600 rounded py-2 px-4 block w-full appearance-none leading-normal" type="text" name="CVV" placeholder="CVV" maxlength="3" required><br><br>
+
+                <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded w-full mb-4" >Pay</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
