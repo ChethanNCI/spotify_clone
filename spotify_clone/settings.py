@@ -157,22 +157,3 @@ CSRF_TRUSTED_ORIGINS = [
     'http://production1.eba-iq7mhzsh.us-east-1.elasticbeanstalk.com',
     # Add other trusted domains here if necessary
 ]
-
-AWS_STORAGE_BUCKET_NAME = 'elasticbeanstalk-us-east-1-229058507533'  # Your S3 bucket name
-AWS_S3_REGION_NAME = 'us-east-1'  # The region where your bucket is located, e.g., "us-east-1"
-AWS_S3_SIGNATURE_VERSION = 's3v4'
-
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            # Add any additional options if needed, e.g., custom domain or ACL
-        },
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}
-
-# The media URL that will be used to serve media files
-MEDIA_URL = "https://elasticbeanstalk-us-east-1-229058507533.s3.us-east-1.amazonaws.com/spotify_clone/"
