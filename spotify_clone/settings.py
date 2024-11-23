@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-6g)wd+qy-jdhjb)=31w*7(k0t!xcr9sh4-g=m7&o$yx$d2xv9i
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['production1.eba-iq7mhzsh.us-east-1.elasticbeanstalk.com']
 
 
 # Application definition
@@ -151,6 +151,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://c50e7d0b6f474af19122ec17460e2c34.vfs.cloud9.us-east-1.amazonaws.com',
+    'http://production1.eba-iq7mhzsh.us-east-1.elasticbeanstalk.com',
     # Add other trusted domains here if necessary
 ]
