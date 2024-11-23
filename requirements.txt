@@ -4,6 +4,7 @@ bs4==0.0.2
 certifi==2024.8.30
 charset-normalizer==3.4.0
 Django==4.2.16
+django-storages==1.14.4
 idna==3.10
 psycopg2-binary==2.9.10
 requests==2.32.3
