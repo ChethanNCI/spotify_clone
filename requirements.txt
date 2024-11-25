@@ -10,5 +10,6 @@ psycopg2-binary==2.9.10
 requests==2.32.3
 soupsieve==2.6
 sqlparse==0.5.2
+subscription_libnci==0.1
 typing_extensions==4.12.2
 urllib3==2.2.3

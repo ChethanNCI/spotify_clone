@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 import requests
 from django.contrib import messages
 from .models import Subscription
-from .subscription_lib import subscribe_user, unsubscribe_user
+from subscription_libnci import subscribe_user, unsubscribe_user
 
 def top_artists():
     url = "https://spotify-scraper.p.rapidapi.com/v1/chart/artists/top"

@@ -1,0 +1,8 @@
+LICENSE.txt
+README.txt
+setup.py
+subscription_libnci/__init__.py
+subscription_libnci.egg-info/PKG-INFO
+subscription_libnci.egg-info/SOURCES.txt
+subscription_libnci.egg-info/dependency_links.txt
+subscription_libnci.egg-info/top_level.txt
