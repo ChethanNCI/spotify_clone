@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # Create SNS client
 
 # Initialize SNS client
-sns = boto3.client('sns')
+sns = boto3.client('sns', region_name='us-east-1')
 # Create a new SNS topic
 response = sns.create_topic(Name='MyTopic')
 topic_arn = response['TopicArn']
