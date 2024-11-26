@@ -9,6 +9,7 @@ import requests
 from django.contrib import messages
 from .models import Subscription
 from subscription_libnci import subscribe_user, unsubscribe_user
+from .send_registration_email import send_registration_email
 
 def top_artists():
     url = "https://spotify-scraper.p.rapidapi.com/v1/chart/artists/top"
@@ -250,28 +251,28 @@ def signup(request):
         password1 = request.POST['password1']
 
         if password == password1:
-                if User.objects.filter(email=email).exists():
-                     messages.info(request, 'Mail exists')
-                     return redirect('signup')
-                elif User.objects.filter(username=username).exists():
-                     messages.info(request, 'Username exists')
-                     return redirect('signup')
-                else:
-                     user = User.objects.create_user(username=username, email=email, password=password)
-                     user.save()
-                     
-                     return redirect('login')
-
-                     
-                
-
-                
-        else:
-                messages.info(request, 'Passsword not matches')
+            if User.objects.filter(email=email).exists():
+                messages.info(request, 'Mail exists')
                 return redirect('signup')
+            elif User.objects.filter(username=username).exists():
+                messages.info(request, 'Username exists')
+                return redirect('signup')
+            else:
+                # Create the user
+                user = User.objects.create_user(username=username, email=email, password=password)
+                user.save()
 
+                # Send the registration email
+                send_registration_email(username, email)
+
+                # Redirect to login page
+                return redirect('login')
+        else:
+            messages.info(request, 'Passwords do not match')
+            return redirect('signup')
     else:
         return render(request, 'signup.html')
+
 
 @login_required(login_url='login')
 def logout(request):
