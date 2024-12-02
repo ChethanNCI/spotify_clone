@@ -11,4 +11,5 @@ urlpatterns = [
     path('subscribe/', views.subscription_page, name='subscription_page'),
     path('process_subscription/', views.process_subscription, name='process_subscription'),
     path('process_unsubscription/', views.process_unsubscription, name='process_unsubscription'),
+    path('search', views.search, name='search'),
 ]

@@ -156,6 +156,55 @@ def track_image(track_id, track_name):
         url_640w = ''
 
     return url_640w
+    
+def search(request):
+    if request.method == 'POST':
+        search_query = request.POST['search_query']
+
+        url = "https://spotify-scraper.p.rapidapi.com/v1/search"
+
+        querystring = {"term":search_query,"type":"track"}
+
+        headers = {
+	            "x-rapidapi-key": "bfe779e111msh9d8c3f9891400d2p188405jsn02b3bf2266d8",
+	            "x-rapidapi-host": "spotify-scraper.p.rapidapi.com"
+                }
+
+        response = requests.get(url, headers=headers, params=querystring)
+        track_list = []
+
+        if response.status_code == 200:
+            data = response.json()
+
+            search_results_count = data["tracks"]["totalCount"]
+            tracks = data["tracks"]["items"]
+
+            for track in tracks:
+                track_name = track["name"]
+                artist_name = track["artists"][0]["name"]
+                duration = track["durationText"]
+                trackid = track["id"]
+
+                if track_image(trackid, track_name):
+                    get_track_image = track_image(trackid, track_name)
+                else:
+                    get_track_image = "https://imgv3.fotor.com/images/blog-richtext-image/music-of-the-spheres-album-cover.jpg"
+
+                track_list.append({
+                    'track_name': track_name,
+                    'artist_name': artist_name,
+                    'duration': duration,
+                    'trackid': trackid,
+                    'get_track_image': get_track_image,
+                })
+        context = {
+            'search_results_count': search_results_count,
+            'track_list': track_list,
+        }
+
+        return render(request, 'search.html', context)
+    else:
+        return render(request, 'search.html')
 
 def profile(request, pk):
     artist_id = pk
