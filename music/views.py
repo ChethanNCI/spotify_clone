@@ -69,21 +69,23 @@ def top_tracks():
     return track_details
 
 def audio_detail(query):
-    url = "https://spotify-scraper.p.rapidapi.com/v1/track/download"
+    
+    url = "https://spotify-scraper.p.rapidapi.com/v1/track/download/soundcloud"
 
-    querystring = {"track":query}
+    querystring = {"track":query,"quality":"sq"}
 
     headers = {
-        "x-rapidapi-key": "bfe779e111msh9d8c3f9891400d2p188405jsn02b3bf2266d8",
-        "x-rapidapi-host": "spotify-scraper.p.rapidapi.com"
-    }
+	    "x-rapidapi-key": "bfe779e111msh9d8c3f9891400d2p188405jsn02b3bf2266d8",
+	    "x-rapidapi-host": "spotify-scraper.p.rapidapi.com"
+        }
 
     response = requests.get(url, headers=headers, params=querystring)
+
     audio_song = []
     if response.status_code == 200:
         song_data = response.json()
-        if 'youtubeVideo' in song_data and 'audio' in song_data['youtubeVideo']:
-            song_list = song_data['youtubeVideo']['audio'] 
+        if 'soundcloudTrack' in song_data and 'audio' in song_data['soundcloudTrack']:
+            song_list = song_data['soundcloudTrack']['audio'] 
             song_url = song_list[0]['url']
             duration_text = song_list[0]['durationText']
             
